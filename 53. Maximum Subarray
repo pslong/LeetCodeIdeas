@@ -1,0 +1,26 @@
+求最大子序列，是动态规划问题
+考虑3个问题：
+1.子问题
+    求长度为N数组nums的最大子序列，它的相似问题是求数组nums[:N-1]的最大子序列，并依次递推。
+2.子问题间的状态转移
+    数组第i位最大子序列=max(数组i-1位最大子序列，数组i位后缀最大子序列)，其中数组i-1位的任何信息为已知，未知为数组i位后缀最大子序列
+    数组i位后缀最大子序列=max(数组i-1位后缀最大子序列+nums[i],nums[i])，此时所有信息已知
+3.初始条件
+    需要注意边界
+
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        if(nums.size()==0) return 0;
+        else if (nums.size()==1) return nums[0];
+        int globalMax=nums[0];
+        int curMax=nums[0];
+        int sizeNums=nums.size();
+        for(int i=1;i<sizeNums;i++){
+            curMax=max(curMax+nums[i],nums[i]);
+            globalMax=max(globalMax,curMax);
+        }
+        return globalMax;
+    }
+};
