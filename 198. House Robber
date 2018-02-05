@@ -1,0 +1,20 @@
+动态规划思路求解
+1. 所求问题可转换为求两个子问题最大：A.包含当前房间的最大值 i 。B.不包含当前房间的最大值 e
+2. 状态转移
+ i=num[k]+e (当前房间的钱+不包含上一个房间的钱的最大值)
+ e=max(不包含上一个房间的钱的最大值，包含上一个房间的钱的最大值)
+3. 初始状态 i,e=0
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int i=0;
+        int e=0;
+        for(int k=1;k++;k>nums.size()){
+            int tmp=i;
+            i=e+nums[k];
+            e=max(tmp,e);
+        }
+        return max(i,e);
+    }
+};
