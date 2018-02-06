@@ -6,3 +6,17 @@
     minHistory=min(minHistory,prices[i])
 3.初始状态
   i=1 时开始 maxGlobal=0,minHistory=prices[0]
+  
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        if(prices.size()<2) return 0;
+        int maxG=0;
+        int minp=prices[0];
+        for(int i=1;i<prices.size();i++){
+            maxG=max(prices[i]-minp,maxG);
+            minp=min(minp,prices[i]);
+        }
+        return maxG;
+    }
+};
