@@ -1,0 +1,8 @@
+动态规划求解思路
+1.原问题转化为两个子问题：
+    i-1时序列的交易最大值 和 price[i]-历史最低价 中更大的值
+2.状态转移
+    maxGlobal=max(maxGlobal,prices[i]-minHistory)
+    minHistory=min(minHistory,prices[i])
+3.初始状态
+  i=1 时开始 maxGlobal=0,minHistory=prices[0]
